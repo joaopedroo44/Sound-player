@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastre-se</title>
+  <link rel="stylesheet" href="./public/css/cadastro.css">
+</head>
+<body>
+
+  <div class="login-container">
+    <h2>Cadastre-se</h2>
+    <form action="/API/cadastro.php" method="POST" id="formCadastro">
+      <div class="form-group">
+        <input type="email" name="email" id= "email" placeholder="Digite seu e-mail" required>
+      </div>
+
+      <div class="form-group">
+        <input type="text" name="usuario" id="usuario" placeholder="Usuário" required>
+      </div>
+
+      <div class="form-group">
+        <div class="senha-container">
+          <input type="password" name="senha" id="senha" placeholder="Digite sua senha" required>
+          <button type="button" id="toggleSenha">Mostrar</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="confirm-senha">
+          <input type="password" name= "senha2" id="senha2" placeholder="Confirme sua senha" required>
+          <button type="button" id="toggleSenha2">Mostrar</button>
+        </div>
+      </div>
+
+      <button type="submit" id="registrarBtn">Registrar</button>
+    </form>
+
+    <p>Já tem uma conta? <a href="index.html">Entre</a></p>
+  </div>
+
+  <script src="./public/js/cadastro.js"></script>
+</body>
+</html>

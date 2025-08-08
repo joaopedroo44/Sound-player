@@ -1,0 +1,14 @@
+body {
+  background: linear-gradient(to right, darkblue, black);
+  font-family: 'Arial', sans-serif;
+}
+
+p, h1 {
+  color: white;
+}
+
+.menu {
+  color: black;
+  height: 12px;
+  width: 100%;
+}
