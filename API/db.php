@@ -3,6 +3,8 @@ $host = "sql311.infinityfree.com";
 $user = "if0_39062946";
 $pass = "Jpmr190508";
 $db   = "if0_39062946_sound_player_db";
+//$db   = "if0_39062946_XXX"; (nome correto)
+//$db   = "if0_39062946_sound_player_db";
 
 $conn = new mysqli($host, $user, $pass, $db);
 
