@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
     try {
       const response = await fetch("API/login.php", {
         method: "POST",
+        credentials: "same-origin",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded"
         },
@@ -32,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         alert(data.error || "Erro ao fazer login.");
       }
+
     } catch (err) {
       alert("Erro ao conectar com o servidor.");
       console.error(err);

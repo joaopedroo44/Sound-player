@@ -4,30 +4,32 @@ async function cadastrar() {
     const email = document.querySelector("#email").value.trim();
     const senha = document.querySelector("#senha").value.trim();
 
-    // Validações básicas no frontend
+    // Validações básicas
     if (!usuario || !email || !senha) {
         alert("Preencha todos os campos!");
         return;
     }
 
-    // Validação de e-mail com regex simples
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
         alert("E-mail inválido!");
         return;
     }
 
-    // Validação de senha mínima
     if (senha.length < 6) {
         alert("A senha deve ter no mínimo 6 caracteres!");
         return;
     }
 
-    // Envia dados para o backend
-    const res = await fetch("../api/cadastro.php", {
+    // Envia via FormData
+    const formData = new FormData();
+    formData.append("usuario", usuario);
+    formData.append("email", email);
+    formData.append("senha", senha);
+
+    const res = await fetch("../API/cadastro.php", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ usuario, email, senha })
+        body: formData
     });
 
     const data = await res.json();
@@ -39,7 +41,7 @@ async function cadastrar() {
     }
 }
 
-// Login com validação simples
+// Login
 async function login() {
     const email = document.querySelector("#email").value.trim();
     const senha = document.querySelector("#senha").value.trim();
@@ -49,10 +51,13 @@ async function login() {
         return;
     }
 
-    const res = await fetch("../api/login.php", {
+    const formData = new FormData();
+    formData.append("email", email);
+    formData.append("senha", senha);
+
+    const res = await fetch("../API/login.php", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, senha })
+        body: formData
     });
 
     const data = await res.json();
@@ -66,7 +71,7 @@ async function login() {
 
 // Logout
 async function logout() {
-    await fetch("../api/logout.php");
+    await fetch("../API/logout.php");
     localStorage.removeItem("usuario");
     window.location.href = "index.html";
 }

@@ -1,8 +1,8 @@
 <?php
-$host = "sql311.infinityfree.com";
-$user = "if0_39062946";
-$pass = "Jpmr190508";
-$db   = "if0_39062946_sound_player_db";
+$host = "solucaosistemas.net.br";
+$user = " solucaos_sound_player";
+$pass = "sound_player@2025";
+$db   = "solucaos_sound_player";
 
 $conn = new mysqli($host, $user, $pass, $db);
 

@@ -1,14 +1,86 @@
 body {
-  background: linear-gradient(to right, darkblue, black);
-  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to right, #141E30, #243B55);
+  font-family: Arial, sans-serif;
+  margin: 0;
+  color: #fff;
 }
 
-p, h1 {
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0d1b2a;
+  padding: 15px 30px;
+}
+
+header h1 {
+  margin: 0;
+}
+
+header button {
+  background: crimson;
+  border: none;
+  padding: 8px 16px;
   color: white;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
-.menu {
-  color: black;
-  height: 12px;
-  width: 100%;
+header button:hover {
+  background: darkred;
+}
+
+main {
+  padding: 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+section {
+  margin-bottom: 30px;
+  background: rgba(255,255,255,0.05);
+  padding: 15px;
+  border-radius: 8px;
+}
+
+#results .video {
+  margin-bottom: 20px;
+}
+
+#playlist {
+  list-style: none;
+  padding: 0;
+}
+
+#playlist li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0,0,0,0.3);
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+#playlist li span {
+  cursor: pointer;
+  flex: 1;
+}
+
+#playlist li button {
+  background: crimson;
+  border: none;
+  padding: 6px 12px;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#playlist li button:hover {
+  background: darkred;
+}
+
+.player-section {
+  text-align: center;
 }

@@ -1,4 +1,4 @@
-const API_KEY = "AIzaSyDVHjAK3GctJMxy_FT0yuImjzyd8YvQZVk"; // 🔑 Substitua pela sua chave da API
+const API_KEY = "AIzaSyDVHjAK3GctJMxy_FT0yuImjzyd8YvQZVk"; 
 const resultsContainer = document.getElementById("results");
 
 async function buscarMusica() {
@@ -27,6 +27,8 @@ async function buscarMusica() {
                 videoElement.innerHTML = `
                     <h3>${title}</h3>
                     <iframe width="300" height="170" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>
+                    <br>
+                    <button onclick="adicionarPlaylist('${videoId}', '${title.replace(/'/g, "\\'")}')">Adicionar à Playlist</button>
                 `;
 
                 resultsContainer.appendChild(videoElement);

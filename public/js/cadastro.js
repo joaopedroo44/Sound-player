@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const formData = new FormData(form);
 
         try {
-            const response = await fetch("/API/cadastro.php", {
+            const response = await fetch("../API/cadastro.php", {
                 method: "POST",
                 body: formData
             });

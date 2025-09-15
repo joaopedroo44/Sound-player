@@ -1,13 +1,14 @@
-const playlistContainer = document.createElement("div");
-playlistContainer.id = "playlist";
-document.body.appendChild(playlistContainer);
+const playlistContainer = document.getElementById("playlist");
 
 // Adicionar vídeo à playlist
 async function adicionarPlaylist(videoId, titulo) {
-    const res = await fetch("../api/playlist.php", {
+    const formData = new FormData();
+    formData.append("video_id", videoId);
+    formData.append("titulo", titulo);
+
+    const res = await fetch("playlist.php", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ video_id: videoId, titulo })
+        body: formData
     });
 
     const data = await res.json();
@@ -21,12 +22,12 @@ async function adicionarPlaylist(videoId, titulo) {
 
 // Listar playlist
 async function carregarPlaylist() {
-    const res = await fetch("../api/playlist.php");
+    const res = await fetch("playlist.php");
     const data = await res.json();
 
     playlistContainer.innerHTML = "<h2>Sua Playlist</h2>";
 
-    if (data.length === 0) {
+    if (!Array.isArray(data) || data.length === 0) {
         playlistContainer.innerHTML += "<p>Não há vídeos na playlist.</p>";
         return;
     }
@@ -45,10 +46,12 @@ async function carregarPlaylist() {
 
 // Remover vídeo
 async function removerVideo(id) {
-    const res = await fetch("../api/playlist.php", {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id })
+    const formData = new FormData();
+    formData.append("id", id);
+
+    const res = await fetch("playlist.php", {
+        method: "POST", 
+        body: formData
     });
 
     const data = await res.json();

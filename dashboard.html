@@ -3,37 +3,71 @@
 <head>
   <meta charset="UTF-8">
   <title>Dashboard - Sound Player</title>
-  <link rel="stylesheet" href="./public/css/dashboard.css">
+  <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
   <header>
-    <h1>Bem-vindo, <span id="nomeUsuario"></span>!</h1>
+    <h1>🎵 Bem-vindo, <span id="nomeUsuario"></span></h1>
     <button onclick="logout()">Sair</button>
   </header>
 
   <main>
+    <!-- Busca no YouTube -->
     <section class="search-section">
       <h2>Buscar música no YouTube</h2>
       <input type="text" id="searchInput" placeholder="Digite o nome da música">
       <button onclick="buscarMusica()">Buscar</button>
     </section>
 
+    <!-- Resultados -->
     <section class="results-section">
       <h2>Resultados</h2>
       <div id="results"></div>
     </section>
+
+    <!-- Player fixo -->
+    <section class="player-section">
+      <h2>Player</h2>
+      <iframe id="player" width="560" height="315" 
+              src="" 
+              frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen></iframe>
+    </section>
+
+    <!-- Playlist -->
+    <section class="playlist-section">
+      <h2>Sua Playlist</h2>
+      <ul id="playlist"></ul>
+    </section>
   </main>
 
-  <script src="./public/js/auth.js"></script>
-  <script src="./public/js/youtube.js"></script>
+  <!-- Scripts -->
+  <script src="auth.js"></script>
+  <script src="youtube.js"></script>
+  <script src="playlist.js"></script>
   <script>
-    // Verifica login
-    const usuario = localStorage.getItem("usuario");
-    if (!usuario) {
-      window.location.href = "index.html";
-    } else {
-      document.getElementById("nomeUsuario").textContent = usuario;
-    }
+    // Checa se o usuário está logado
+    (async () => {
+      try {
+        const res = await fetch("API/check_session.php", { credentials: "same-origin" });
+        const data = await res.json();
+        if (data.logged) {
+          document.getElementById("nomeUsuario").textContent = data.usuario;
+          localStorage.setItem("usuario", data.usuario);
+          return;
+        }
+      } catch (err) {
+        console.warn("Erro ao checar sessão:", err);
+      }
+
+      const usuario = localStorage.getItem("usuario");
+      if (!usuario) {
+        window.location.href = "index.html";
+      } else {
+        document.getElementById("nomeUsuario").textContent = usuario;
+      }
+    })();
   </script>
 </body>
 </html>
